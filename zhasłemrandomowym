@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ide się zajebać zw</title>
+</head>
+
+<body onload="init()">
+    <div id="container">
+        <div class="row text-center m-5" id="header">
+            <h1 align ="center">Ide się zajebać zw</h1>
+        </div>
+        <div class="row m-5" id="main">
+            <div class="col-6 text-center" id="image">
+                <img align ="center" class="img-fluid" src="wisielec-1.png" id="wisielec0"><br>
+                <span align ="center" id="attemptCounter">Próby</span>
+            </div>
+            <div class="col-6 text-center pt-5" id="password" style="letter-spacing: 1rem;">
+                __________
+            </div>
+        </div>
+        <div class="row m-5">
+            <div class="col text-center" id="keyboard">
+                
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var password;var passwordMask = Array();
+        var attempts = (0-1);var maxAttempts = 3;
+        function init() {
+            for (let code = 65; code < 91; code++) {
+
+                let char = String.fromCharCode(code);let button = document.createElement('button');
+                button.innerHTML = char;
+                button.classList.add('btn');
+                button.classList.add('btn-primary');
+                button.classList.add('m-1');
+                button.addEventListener("click", guess); document.getElementById('keyboard').appendChild(button);
+            }
+            ///password = prompt("Podaj hasło:");
+            password = radom();
+            password = password.toUpperCase();
+            passwordMask = new Array(password.length);
+            passwordMask.fill(true);
+            document.getElementById('password').innerHTML = getMaskedPassword();
+            attempts = 0;
+            document.getElementById('attemptCounter').innerHTML = "Próby: " + attempts + "/" + maxAttempts;
+            document.getElementById('wisielec0').src = "wisielec" + attempts + ".png";
+            radom();
+        }
+
+        function guess(event) {
+            let success = false; let char = event.srcElement.innerHTML;let passwordArray = password.split("");
+            for(let i = 0; i < passwordArray.length; i++) {
+                if(passwordArray[i] == char) {
+                
+                    passwordMask[i] = false;
+                    success = true;
+                }
+            }
+            document.getElementById('password').innerHTML = getMaskedPassword();
+            event.srcElement.disabled = true;
+            if(!success) {
+                attempts++; 
+                document.getElementById('attemptCounter').innerHTML = "Próby: "  + attempts + "/" + maxAttempts; document.getElementById('wisielec0').src = "wisielec" + attempts + ".png";
+            }
+            if(checkLose()){}if(checkWin()){}
+        }
+        function checkLose() {
+            if(attempts >= maxAttempts) {
+                alert("Przegrana");
+            }
+            else return false; 
+        }
+        function checkWin() {
+            for (let i = 0; i < passwordMask.length; i++) {
+                if(passwordMask[i] == true) 
+                    return false; 
+            }
+            alert("Wygrana");
+        }
+        function getMaskedPassword() {
+            let passwordArray = password.split("");let maskedPassword = Array();
+            for(let i = 0; i < passwordArray.length; i++) {
+                if(passwordMask[i])
+                    maskedPassword.push("_");
+                else
+                    maskedPassword.push(passwordArray[i]);
+            }
+            let maskedPasswordString = maskedPassword.join("");
+            return maskedPasswordString;
+        }
+        function radom(){
+        let r = (Math.random() + 1).toString(36).substring(7);
+        n = (r.replace(/\d+/g, "XXX"));
+        console.log("random", n);
+        return r;
+        }
+
+           /*
+function A(){
+
+  
+
+}
+
+function B(){
+
+  
+
+
+}
+
+function C(){
+
+  
+
+}
+
+function D(){
+
+
+}
+function E(){
+  // tworzy nowy element div
+  // i daje jego zawartość
+  newDiv = document.createElement("div");
+  newDiv.innerHTML =   String.fromCharCode(69)  ;
+
+  // add the newly created element and it's content into the DOM
+  my_div = document.getElementById("org_div1");
+  document.body.insertBefore(newDiv, my_div);
+  
+console.log(String.fromCharCode(69));
+
+}
+function F(){
+
+
+
+}
+function G(){
+
+  
+console.log(String.fromCharCode(71));
+  // tworzy nowy element div
+  // i daje jego zawartość
+  newDiv = document.createElement("div");
+  newDiv.innerHTML =   String.fromCharCode(71)  ;
+
+  // add the newly created element and it's content into the DOM
+  my_div = document.getElementById("org_div1");
+  document.body.insertBefore(newDiv, my_div);
+}
+function H(){
+
+  
+
+}
+function I(){
+
+  
+console.log(String.fromCharCode(73));
+  // tworzy nowy element div
+  // i daje jego zawartość
+  newDiv = document.createElement("div");
+  newDiv.innerHTML =   String.fromCharCode(73)  ;
+
+  // add the newly created element and it's content into the DOM
+  my_div = document.getElementById("org_div1");
+  document.body.insertBefore(newDiv, my_div);
+}
+function J(){
+
+  
+
+}
+function K(){
+
+  
+
+}
+function L(){
+
+  
+
+}
+
+function M(){
+
+}
+
+function N(){
+
+  
+console.log(String.fromCharCode(78));
+  // tworzy nowy element div
+  // i daje jego zawartość
+  newDiv = document.createElement("div");
+  newDiv.innerHTML =   String.fromCharCode(78)  ;
+
+  // add the newly created element and it's content into the DOM
+  my_div = document.getElementById("org_div1");
+  document.body.insertBefore(newDiv, my_div);
+  mpkt();
+  pass();
+}
+function O(){
+
+  
+
+}
+
+function P(){
+
+
+}
+
+function Q(){
+
+  
+
+}
+
+function R(){
+
+  
+console.log(String.fromCharCode(82));
+  // tworzy nowy element div
+  // i daje jego zawartość
+  newDiv = document.createElement("div");
+  newDiv.innerHTML =   String.fromCharCode(82)  ;
+
+  // add the newly created element and it's content into the DOM
+  my_div = document.getElementById("org_div1");
+  document.body.insertBefore(newDiv, my_div);
+}
+
+
+function S(){
+
+  
+
+}
+
+
+function T(){
+
+  
+
+}
+
+
+function U(){
+
+
+}
+
+
+function V(){
+
+
+}
+
+
+function W(){
+
+
+}
+
+
+function X(){
+
+  
+
+}
+
+function Y(){
+
+
+}
+
+function Z(){
+
+  
+
+}
+function Space(){
+
+  
+console.log(String.fromCharCode(32));
+  // tworzy nowy element div
+  // i daje jego zawartość
+  newDiv = document.createElement("div");
+  newDiv.innerHTML =   String.fromCharCode(32)  ;
+
+  // add the newly created element and it's content into the DOM
+  my_div = document.getElementById("org_div1");
+  document.body.insertBefore(newDiv, my_div);
+} */
+    </script>
+
+</body>
+
+</html>
